@@ -11,7 +11,7 @@ services:
     ports:
       - '${NGINX_PORT}:80'
     volumes:
-      - ./:/var/www/html/
+      - ./backend:/var/www/html/
     restart: always
   php:
     build:
@@ -21,7 +21,7 @@ services:
     networks:
       - backend
     volumes:
-      - ./:/var/www/html/
+      - ./backend:/var/www/html/
       - ./docker/php/config/config.ini:/usr/local/etc/php/conf.d/uploads.ini
     restart: always
   mysql:
@@ -47,7 +47,6 @@ services:
       - PMA_ARBITRARY=10
       - PMA_HOST=mysql
       - PMA_PORT=3306
-
     restart: always
     ports:
       - '${PHPMYADMIN_PORT}:80'
